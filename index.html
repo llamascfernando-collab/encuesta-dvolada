@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>D'Volada | Encuesta</title>
 
@@ -34,10 +34,6 @@ body{
   position:relative;
   overflow-x:hidden;
 }
-
-/* =========================
-   DECORACIÓN DEL FONDO
-========================= */
 
 .decor-bg{
   position:fixed;
@@ -118,8 +114,6 @@ body{
   transform:rotate(32deg) scale(.78);
 }
 
-/* Hojas */
-
 .leaf{
   position:absolute;
   width:105px;
@@ -168,10 +162,6 @@ body{
   transform:rotate(190deg) scale(.82);
 }
 
-/* =========================
-   CONTENEDOR
-========================= */
-
 .page{
   position:relative;
   z-index:2;
@@ -179,10 +169,6 @@ body{
   margin:auto;
   padding:28px 0 45px;
 }
-
-/* =========================
-   ENCABEZADO
-========================= */
 
 header{
   text-align:center;
@@ -219,10 +205,6 @@ header p{
   font-weight:bold;
   margin:0 0 24px;
 }
-
-/* =========================
-   TARJETAS
-========================= */
 
 .card{
   margin:15px 0;
@@ -262,10 +244,6 @@ header p{
 .light .sub{
   color:#a13b30;
 }
-
-/* =========================
-   TAZAS
-========================= */
 
 .ratings{
   display:flex;
@@ -344,10 +322,6 @@ header p{
   margin-top:8px;
 }
 
-/* =========================
-   COMENTARIO
-========================= */
-
 textarea{
   width:100%;
   min-height:110px;
@@ -363,10 +337,6 @@ textarea{
   font:16px Arial;
   resize:vertical;
 }
-
-/* =========================
-   MOTIVOS
-========================= */
 
 #reasons{
   display:none;
@@ -396,10 +366,6 @@ textarea{
 .reason input{
   accent-color:#07583b;
 }
-
-/* =========================
-   PARTE FINAL
-========================= */
 
 .decor-flourish{
   color:#d8b66e;
@@ -471,10 +437,6 @@ textarea{
   cursor:not-allowed;
 }
 
-/* =========================
-   GRACIAS
-========================= */
-
 #thanks{
   display:none;
   text-align:center;
@@ -484,10 +446,6 @@ textarea{
   color:var(--dorado);
   font-size:38px;
 }
-
-/* =========================
-   CELULAR
-========================= */
 
 @media(max-width:700px){
 
@@ -530,8 +488,6 @@ textarea{
 
 <body>
 
-<!-- DECORACIÓN -->
-
 <div class="decor-bg" aria-hidden="true">
 
   <span class="leaf leaf1"></span>
@@ -550,19 +506,18 @@ textarea{
 
 </div>
 
-
 <div class="page">
-
-<!-- =========================
-     LOGO
-========================= -->
 
 <header>
 
-  <!-- CONSERVA AQUÍ TU LOGO ACTUAL -->
+  <!--
+  IMPORTANTE:
+  CONSERVA AQUÍ EL SRC DE TU LOGO ACTUAL.
+  -->
+
   <img
     class="logo"
-    src="PEGA_AQUI_LA_RUTA_O_BASE64_DE_TU_LOGO"
+    src="PEGA_AQUI_EL_SRC_DE_TU_LOGO"
     alt="D'Volada"
   >
 
@@ -585,10 +540,6 @@ textarea{
 
 <div id="survey">
 
-<!-- =========================
-     1. CALIFICACIÓN
-========================= -->
-
 <section class="card">
 
   <p class="title">
@@ -599,15 +550,11 @@ textarea{
     ━ ♡ ━
   </div>
 
-
   <div class="ratings">
-
-    <!-- TAZA 1 -->
 
     <button class="rate" data-v="1">
 
-      <svg class="cup-svg"
-           viewBox="0 0 160 105">
+      <svg class="cup-svg" viewBox="0 0 160 105">
 
         <path
           d="M31 40h82v28c0 16-13 27-29 27H60c-16 0-29-11-29-27V40Z"
@@ -660,12 +607,9 @@ textarea{
     </button>
 
 
-    <!-- TAZA 2 -->
-
     <button class="rate" data-v="2">
 
-      <svg class="cup-svg"
-           viewBox="0 0 160 105">
+      <svg class="cup-svg" viewBox="0 0 160 105">
 
         <path
           d="M31 40h82v28c0 16-13 27-29 27H60c-16 0-29-11-29-27V40Z"
@@ -713,12 +657,9 @@ textarea{
     </button>
 
 
-    <!-- TAZA 3 -->
-
     <button class="rate" data-v="3">
 
-      <svg class="cup-svg"
-           viewBox="0 0 160 105">
+      <svg class="cup-svg" viewBox="0 0 160 105">
 
         <path
           d="M31 40h82v28c0 16-13 27-29 27H60c-16 0-29-11-29-27V40Z"
@@ -766,12 +707,9 @@ textarea{
     </button>
 
 
-    <!-- TAZA 4 -->
-
     <button class="rate" data-v="4">
 
-      <svg class="cup-svg"
-           viewBox="0 0 160 105">
+      <svg class="cup-svg" viewBox="0 0 160 105">
 
         <path
           d="M31 40h82v28c0 16-13 27-29 27H60c-16 0-29-11-29-27V40Z"
@@ -819,12 +757,9 @@ textarea{
     </button>
 
 
-    <!-- TAZA 5 -->
-
     <button class="rate" data-v="5">
 
-      <svg class="cup-svg"
-           viewBox="0 0 160 105">
+      <svg class="cup-svg" viewBox="0 0 160 105">
 
         <path
           d="M31 40h82v28c0 16-13 27-29 27H60c-16 0-29-11-29-27V40Z"
@@ -880,10 +815,6 @@ textarea{
 </section>
 
 
-<!-- =========================
-     2. MOTIVOS
-========================= -->
-
 <section class="card light" id="reasons">
 
   <p class="title">
@@ -932,10 +863,6 @@ textarea{
 </section>
 
 
-<!-- =========================
-     3. COMENTARIO
-========================= -->
-
 <section class="card">
 
   <p class="title">
@@ -960,10 +887,6 @@ textarea{
   ☕ ❧ ☕
 </div>
 
-
-<!-- =========================
-     ENVIAR
-========================= -->
 
 <div class="bottom">
 
@@ -997,10 +920,6 @@ textarea{
 </div>
 
 
-<!-- =========================
-     MENSAJE FINAL
-========================= -->
-
 <section class="card" id="thanks">
 
   <h2>
@@ -1019,11 +938,11 @@ textarea{
 <script>
 
 /* =====================================================
-   URL DE TU GOOGLE APPS SCRIPT
+   GOOGLE APPS SCRIPT
 ===================================================== */
 
 const GOOGLE_SCRIPT_URL =
-"https://script.google.com/a/macros/cetis58.edu.mx/s/AKfycbwSkmfWsrufQJlZVLJlkGctdDvSrQBZLPP_Kay4CRFI1ezdhLgH9Bgf88WQFutT0d7o/exec";
+"https://script.google.com/macros/s/AKfycbx1AqXgLNLgCkstwPTlfdW78sTgfWQ0XK16VbScCiLYHUm4AEFDOuCtMek1xEvH4Uoa/exec";
 
 
 /* =====================================================
@@ -1049,7 +968,7 @@ document.getElementById("send");
 
 
 /* =====================================================
-   SELECCIÓN DE CALIFICACIÓN
+   CALIFICACIÓN
 ===================================================== */
 
 rates.forEach(rate => {
@@ -1082,11 +1001,6 @@ rates.forEach(rate => {
       textos[selected];
 
 
-    /*
-      Los motivos aparecen únicamente
-      cuando la calificación es 3 o menos.
-    */
-
     if(selected <= 3){
 
       reasons.style.display =
@@ -1097,17 +1011,14 @@ rates.forEach(rate => {
       reasons.style.display =
         "none";
 
-      /*
-        Limpiamos los motivos si
-        posteriormente sube la calificación.
-      */
-
       document
         .querySelectorAll(
           '#reasons input[type="checkbox"]'
         )
         .forEach(check => {
+
           check.checked = false;
+
         });
 
     }
@@ -1118,7 +1029,7 @@ rates.forEach(rate => {
 
 
 /* =====================================================
-   OBTENER MOTIVOS
+   MOTIVOS
 ===================================================== */
 
 function obtenerMotivos(){
@@ -1142,15 +1053,10 @@ function obtenerMotivos(){
 
 
 /* =====================================================
-   ENVIAR ENCUESTA
+   ENVIAR
 ===================================================== */
 
 send.addEventListener("click", async () => {
-
-
-  /* -------------------------------
-     COMPROBAR CALIFICACIÓN
-  -------------------------------- */
 
   if(!selected){
 
@@ -1163,19 +1069,11 @@ send.addEventListener("click", async () => {
   }
 
 
-  /* -------------------------------
-     EVITAR DOBLE CLIC
-  -------------------------------- */
-
   send.disabled = true;
 
   send.textContent =
     "ENVIANDO...";
 
-
-  /* -------------------------------
-     OBTENER DATOS
-  -------------------------------- */
 
   const datos = {
 
@@ -1190,14 +1088,6 @@ send.addEventListener("click", async () => {
 
   };
 
-
-  /*
-    IMPORTANTE:
-
-    Usamos text/plain para evitar
-    problemas de CORS/preflight
-    con Google Apps Script.
-  */
 
   try{
 
@@ -1219,28 +1109,10 @@ send.addEventListener("click", async () => {
     );
 
 
-    /* -------------------------------
-       GUARDAR MARCA LOCAL
-    -------------------------------- */
-
-    localStorage.setItem(
-      "dvolada_ultima_encuesta",
-      Date.now()
-    );
-
-
-    /* -------------------------------
-       OCULTAR ENCUESTA
-    -------------------------------- */
-
     document.getElementById(
       "survey"
     ).style.display = "none";
 
-
-    /* -------------------------------
-       MOSTRAR GRACIAS
-    -------------------------------- */
 
     document.getElementById(
       "thanks"
