@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Miranda Florería</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+      color: #3f3140;
+      background:
+        radial-gradient(circle at 10% 15%, rgba(255, 184, 207, .45), transparent 28%),
+        radial-gradient(circle at 90% 85%, rgba(196, 231, 181, .45), transparent 30%),
+        linear-gradient(135deg, #fff8fb 0%, #fffdf6 48%, #f4fbf1 100%);
+    }
+
+    .pagina {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 35px 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pagina::before,
+    .pagina::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(1px);
+      pointer-events: none;
+    }
+
+    .pagina::before {
+      width: 360px;
+      height: 360px;
+      left: -180px;
+      top: -120px;
+      background: rgba(255, 161, 194, .18);
+      box-shadow:
+        520px 650px 0 rgba(171, 219, 147, .13),
+        900px 100px 0 rgba(255, 215, 110, .12);
+    }
+
+    .pagina::after {
+      width: 300px;
+      height: 300px;
+      right: -140px;
+      bottom: -120px;
+      background: rgba(174, 222, 150, .20);
+    }
+
+    .tarjeta {
+      width: min(100%, 1050px);
+      background: rgba(255, 255, 255, .88);
+      border: 1px solid rgba(218, 168, 191, .45);
+      border-radius: 32px;
+      box-shadow: 0 25px 70px rgba(91, 55, 76, .14);
+      padding: 55px 65px;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .tarjeta::before {
+      content: "🌷";
+      position: absolute;
+      font-size: 180px;
+      right: -15px;
+      top: -55px;
+      opacity: .10;
+      transform: rotate(12deg);
+      pointer-events: none;
+    }
+
+    .encabezado {
+      text-align: center;
+      border-bottom: 1px solid rgba(194, 146, 168, .35);
+      padding-bottom: 35px;
+      margin-bottom: 38px;
+      position: relative;
+    }
+
+    .flor {
+      font-size: 72px;
+      line-height: 1;
+      margin-bottom: 5px;
+      display: inline-block;
+      filter: drop-shadow(0 8px 8px rgba(176, 73, 118, .18));
+      animation: flotar 3.5s ease-in-out infinite;
+    }
+
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-5px) rotate(2deg); }
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(58px, 8vw, 92px);
+      font-weight: 600;
+      letter-spacing: 5px;
+      line-height: .9;
+      background: linear-gradient(90deg, #9e3f68, #d45d86, #a96b3e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .floreria {
+      color: #6c9a54;
+      font-size: 18px;
+      letter-spacing: 8px;
+      margin-top: 16px;
+      font-weight: 700;
+    }
+
+    .slogan {
+      font-family: 'Cormorant Garamond', serif;
+      color: #725164;
+      font-size: clamp(23px, 3vw, 31px);
+      margin-top: 30px;
+    }
+
+    .contenido {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .datos {
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .dato {
+      margin-bottom: 18px;
+      padding: 17px 20px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #fff1f6, #fff9ef);
+      border: 1px solid rgba(217, 159, 183, .32);
+      box-shadow: 0 8px 22px rgba(125, 73, 100, .06);
+    }
+
+    .dato::before {
+      content: "☎";
+      margin-right: 10px;
+      color: #bf527d;
+    }
+
+    .dato a, .direccion a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .dato a:hover, .direccion a:hover { color: #ad456f; }
+
+    .direccion {
+      margin-top: 12px;
+      padding: 20px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #f2faee, #fffdf2);
+      border: 1px solid rgba(141, 181, 119, .35);
+      box-shadow: 0 8px 22px rgba(78, 113, 65, .06);
+    }
+
+    .direccion::before {
+      content: "📍";
+      margin-right: 8px;
+    }
+
+    .sociales {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .boton-social {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 15px 18px;
+      border: 1px solid rgba(201, 157, 178, .4);
+      border-radius: 20px;
+      color: #443442;
+      text-decoration: none;
+      transition: .25s ease;
+      background: rgba(255,255,255,.82);
+      box-shadow: 0 8px 20px rgba(80, 49, 68, .06);
+    }
+
+    .boton-social:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 13px 28px rgba(80, 49, 68, .13);
+      border-color: #d28bab;
+      background: #fff7fa;
+    }
+
+    .icono {
+      width: 48px;
+      height: 48px;
+      border-radius: 15px;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, #f4b1c9, #d66f99);
+      box-shadow: 0 7px 15px rgba(195, 83, 126, .20);
+    }
+
+    .icono svg {
+      width: 27px;
+      height: 27px;
+      fill: none;
+      stroke: white;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .facebook-logo svg {
+      fill: white;
+      stroke: none;
+      width: 29px;
+      height: 29px;
+    }
+
+    .instagram-logo .relleno {
+      fill: white;
+      stroke: none;
+    }
+
+    .texto-social {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .texto-social strong {
+      font-size: 15px;
+      font-weight: 700;
+      color: #5b3b50;
+    }
+
+    .texto-social span {
+      font-size: 13px;
+      color: #806d7b;
+    }
+
+    .pie {
+      text-align: center;
+      border-top: 1px solid rgba(194, 146, 168, .35);
+      margin-top: 40px;
+      padding-top: 22px;
+      font-size: 12px;
+      color: #8a6f7e;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 760px) {
+      .tarjeta { padding: 40px 25px; border-radius: 24px; }
+      .contenido { grid-template-columns: 1fr; gap: 35px; }
+      .datos { font-size: 16px; }
+      .sociales { width: 100%; }
+      .slogan { margin-top: 22px; }
+    }
+
+  </style>
+</head>
+
+<body>
+  <main class="pagina">
+    <section class="tarjeta">
+
+      <header class="encabezado">
+        <div class="flor" aria-label="Tulipán">🌷</div>
+
+        <h1>MIRANDA</h1>
+
+        <div class="floreria">FLORERÍA</div>
+
+        <p class="slogan">Arreglos florales para toda ocasión</p>
+      </header>
+
+      <div class="contenido">
+
+        <!-- DATOS -->
+        <div class="datos">
+          <div class="dato">
+            <a href="tel:+526648570340">
+              (664) 857-0340
+            </a>
+          </div>
+
+          <div class="direccion">
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Paseo%20del%20Guaycura%2021520-1%2C%20Ampliaci%C3%B3n%20Guaycura%2C%20Tijuana%2C%20Baja%20California%2C%20M%C3%A9xico"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Paseo del Guaycura 21520-1<br>
+              Col. Ampliación Guaycura, C.P. 22214<br>
+              Tijuana B.C., México<br>
+              Blvd Cucapah 20281<br>
+              Buenos Aires Sur<br>
+              C.P. 22207<br>
+              Tijuana, B.C.
+            </a>
+          </div>
+        </div>
+
+        <!-- REDES SOCIALES -->
+        <nav class="sociales">
+
+          <a
+            class="boton-social"
+            href="https://www.instagram.com/floreriamirandatj/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="icono instagram-logo" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                <circle cx="12" cy="12" r="4.2"></circle>
+                <circle cx="17.4" cy="6.7" r="1.1" class="relleno"></circle>
+              </svg>
+            </div>
+            <div class="texto-social">
+              <strong>Instagram</strong>
+              <span>@floreriamirandatj</span>
+            </div>
+          </a>
+
+          <a
+            class="boton-social"
+            href="https://www.facebook.com/FloreriaMiranda/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="icono facebook-logo" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M13.8 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.6 1.7-1.6H17V3.5c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.5H8.2V13h2.6v8h3z"></path>
+              </svg>
+            </div>
+            <div class="texto-social">
+              <strong>Facebook</strong>
+              <span>Florería Miranda</span>
+            </div>
+          </a>
+
+          <a
+            class="boton-social"
+            href="https://wa.me/526648570340"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="icono whatsapp-logo" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3.2a8.7 8.7 0 0 0-7.5 13.1L3.2 21l4.9-1.3A8.8 8.8 0 1 0 12 3.2z"></path>
+                <path d="M8.3 8.2c.2-.4.5-.5.8-.5h.6c.2 0 .4.1.5.4l.8 1.8c.1.3.1.5-.1.7l-.6.7c.5 1 1.3 1.8 2.3 2.3l.7-.6c.2-.2.4-.2.7-.1l1.8.8c.3.1.4.3.4.5v.6c0 .3-.1.6-.5.8-.5.3-1.1.4-1.6.2-1.3-.4-2.7-1.2-3.8-2.3-1.1-1.1-1.9-2.5-2.3-3.8-.2-.5-.1-1.1.2-1.6z"></path>
+              </svg>
+            </div>
+            <div class="texto-social">
+              <strong>WhatsApp</strong>
+              <span>(664) 857-0340</span>
+            </div>
+          </a>
+
+        </nav>
+      </div>
+
+      <footer class="pie">
+        MIRANDA FLORERÍA · TIJUANA, B.C.
+      </footer>
+
+    </section>
+  </main>
+</body>
+</html>
