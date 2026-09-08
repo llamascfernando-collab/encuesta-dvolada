@@ -1,4 +1,174 @@
-```html
+
+
+ayer 2:16 p.m.
+
+Pasted text(20260907-211608).txt
+Documento
+puedo agregar otra cuenta osesa una para el gerente y otra para el dueño de todas las sucursales
+
+Sí, se puede perfectamente. Y de hecho, viendo tu programa actual, podemos hacerlo de una forma mucho mejor que simplemente mandar los resultados a dos correos.
+
+Actualmente tu encuesta ya identifica la sucursal con:
+
+const SUCURSAL_ACTUAL = "Sucursal Buenos Aires";
+y manda esos datos a Google Apps Script. 
+
+
+Yo te recomiendo manejar 2 tipos de cuentas:
+
+👨‍💼 1. Cuenta del gerente
+El gerente solamente puede ver y administrar su sucursal.
+
+Por ejemplo:
+
+Gerente Buenos Aires
+
+Ve respuestas de Buenos Aires
+
+Ve calificaciones
+
+Ve comentarios
+
+Puede revisar estadísticas
+
+No puede ver las demás sucursales
+
+👑 2. Cuenta del dueño general
+El dueño de todas las sucursales tendría acceso a todo:
+
+Buenos Aires
+
+Las demás sucursales
+
+Todas las respuestas
+
+Estadísticas generales
+
+Comparación entre sucursales
+
+Calificación promedio de cada sucursal
+
+Comentarios
+
+Número de encuestas
+
+Y podemos agregar más gerentes después.
+
+Por ejemplo:
+
+Cuenta	Acceso
+Gerente Buenos Aires	Solo Buenos Aires
+Gerente Sucursal 2	Solo Sucursal 2
+Gerente Sucursal 3	Solo Sucursal 3
+Dueño general	Todas las sucursales
+🔐 Y lo podemos hacer con inicio de sesión
+Algo como:
+
+D'Volada — Panel administrativo
+
+Correo:
+Contraseña:
+
+Después de iniciar sesión:
+
+Gerente:
+
+Bienvenido, Gerente Buenos Aires
+📊 Tus resultados
+
+Dueño:
+
+Bienvenido, Administrador
+📊 Todas las sucursales
+
+Además, no necesitamos cambiar la encuesta que ya tienes; podemos conservarla y agregar el sistema de usuarios/panel administrativo encima de tu sistema actual.
+
+Si quieres, también podemos hacer que el dueño cree nuevos gerentes y les asigne una sucursal, para que tú no tengas que modificar código cada vez que abra una sucursal nueva.
+
+
+509ebf65-a497-4aa0-a3fe-feebc64f47af.png
+de aqui que hago
+
+01d8e935-601e-4805-b0ed-7af240949708.png
+
+27803a45-caff-423d-999f-e2c7f99f2921.png
+
+2604f221-5396-41e0-a3f1-33bf63f61a2f.png
+ de aqui pa donde
+
+60b8d5ed-3c1d-4fe1-b935-93ebd81fa445.png
+y y le puedes quitar este html 
+
+Entonces el problema ya está en Apps Script, porque si no le llega ni a llamas.c.fernando@cetis58.edu.mx ni a dvolada29@gmail.com, lo más probable es que Google todavía no haya autorizado MailApp o la implementación no esté aceptando las solicitudes.
+
+Haz esto primero. En Apps Script, debajo de tu código, agrega temporalmente:
+
+function pruebaCorreo() {
+  MailApp.sendEmail({
+    to: "llamas.c.fernando@cetis58.edu.mx,dvolada29@gmail.com",
+    subject: "PRUEBA D'VOLADA",
+    body: "Si recibiste este correo, Apps Script ya tiene permiso para enviar correos."
+  });
+}
+Arriba, donde dice doPost, selecciona pruebaCorreo y presiona ▶ Ejecutar.
+
+Google probablemente te va a pedir permisos. Selecciona la cuenta de D'Volada y autorízalos.
+
+Después revisa los dos correos. Si llega “PRUEBA D'VOLADA”, ya sabemos que el envío funciona.
+
+Luego vuelve a:
+
+Implementar → Administrar implementaciones → ✏️ Editar → Nueva versión → Implementar
+
+y asegúrate de que en Usuarios con acceso esté:
+
+Cualquier usuario / Cualquier persona
+
+No Solo yo.
+
+Después vuelve a probar la encuesta.
+
+Si quieres, mándame una captura de “Ejecuciones” en Apps Script después de mandar una encuesta y te digo exactamente dónde está fallando.
+
+
+ok me espero un rato y luego vuelvo a intentar
+
+Sí, está bien 👍. Puedes esperar un rato y volver a mandar una encuesta de prueba.
+
+Pero normalmente no debería necesitar mucho tiempo. Si después sigue sin llegar a ninguno de los dos correos, no sigas cambiando el HTML: revisamos Apps Script → Ejecuciones y ahí podremos ver exactamente qué está fallando.
+
+Cuando vuelvas a probar, dime si:
+
+llegó a los dos,
+
+solo llegó a uno,
+
+o no llegó a ninguno.
+
+
+a ninguno lego
+
+Entonces ya sabemos que no es cuestión de esperar. Si no llegó a ninguno, hay que revisar dónde se está rompiendo.
+
+Haz esto ahora:
+
+Entra a tu proyecto de Google Apps Script.
+
+En el menú izquierdo, abre Ejecuciones.
+
+Regresa a tu página de la encuesta y manda una respuesta de prueba.
+
+Vuelve a Ejecuciones y mira si aparece una ejecución nueva de doPost.
+
+Si aparece con error rojo, ábrela y mándame una captura del error.
+
+Si no aparece ninguna ejecución nueva, entonces el HTML no está llegando al Apps Script y revisamos la URL o el acceso de la implementación.
+
+También verifica en Implementar → Administrar implementaciones que la app web esté con acceso para Cualquier usuario / Cualquiera, no “Solo yo”.
+
+Mándame una captura de Ejecuciones después de hacer una prueba y te digo exactamente qué corregir.
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -734,7 +904,7 @@ textarea{
 // ==========================================
 
 const GOOGLE_SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycbwSgnuixW_Li7j8jaEScZTlaiyv7fUGqtUMaZMKi9on95YK9MhdTe7H0MpFiFTJD7x6/exec";
+"https://script.google.com/macros/s/AKfycbx1AqXgLNLgCkstwPTlfdW78sTgfWQ0XK16VbScCiLYHUm4AEFDOuCtMek1xEvH4Uoa/exec";
 
 
 // ==========================================
@@ -954,4 +1124,5 @@ send.addEventListener("click", async () => {
 
 </body>
 </html>
-```
+
+Cerrar
