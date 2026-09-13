@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>D'Volada | Encuesta Buenos Aires</title>
+<title>D'Volada | Encuesta CECUT</title>
 
 <style>
 *{
@@ -421,7 +421,7 @@ textarea{
   <div class="line">━ ❈ ━</div>
 
   <div class="cafe">
-    CAFÉ &amp; SMOOTHIES - BUENOS AIRES
+    CAFÉ &amp; SMOOTHIES - CECUT
   </div>
 
   <h1>¡Gracias por tu visita!</h1>
@@ -729,18 +729,18 @@ textarea{
 <script>
 
 // ==========================================
-// URL DE GOOGLE APPS SCRIPT
+// URL DE FORMSPREE
 // ==========================================
 
-const GOOGLE_SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycbx1AqXgLNLgCkstwPTlfdW78sTgfWQ0XK16VbScCiLYHUm4AEFDOuCtMek1xEvH4Uoa/exec";
+const FORMSPREE_URL =
+"https://formspree.io/f/xzeblalp";
 
 // ==========================================
 // SUCURSAL
 // ==========================================
 
 const SUCURSAL_ACTUAL =
-"Sucursal Buenos Aires";
+"Sucursal CECUT";
 
 // ==========================================
 // VARIABLES
@@ -865,7 +865,7 @@ send.addEventListener("click", async () => {
   "ENVIANDO...";
 
   // ========================================
-  // DATOS QUE SE MANDAN A GOOGLE
+  // DATOS QUE SE MANDAN A FORMSPREE
   // ========================================
 
   const datos = {
@@ -891,22 +891,21 @@ send.addEventListener("click", async () => {
 
   try{
 
-    await fetch(
-      GOOGLE_SCRIPT_URL,
+    const respuesta = await fetch(
+      FORMSPREE_URL,
       {
         method:"POST",
-
-        mode:"no-cors",
-
         headers:{
-          "Content-Type":
-          "text/plain;charset=utf-8"
+          "Content-Type":"application/json",
+          "Accept":"application/json"
         },
-
-        body:
-        JSON.stringify(datos)
+        body:JSON.stringify(datos)
       }
     );
+
+    if(!respuesta.ok){
+      throw new Error("Formspree no aceptó el envío");
+    }
 
     // ======================================
     // MOSTRAR AGRADECIMIENTO
