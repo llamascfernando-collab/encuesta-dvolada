@@ -732,8 +732,10 @@ textarea{
 // URL DE FORMSPREE
 // ==========================================
 
-const FORMSPREE_URL =
-"https://formspree.io/f/xqpkrdne";
+const FORMSPREE_URLS = [
+  "https://formspree.io/f/xqpkrdne", // Encargado del local Buenos Aires
+  "https://formspree.io/f/mzebnawg"  // Gerente general
+];
 
 // ==========================================
 // SUCURSAL
@@ -891,20 +893,21 @@ send.addEventListener("click", async () => {
 
   try{
 
-    const respuesta = await fetch(
-      FORMSPREE_URL,
-      {
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json",
-          "Accept":"application/json"
-        },
-        body:JSON.stringify(datos)
-      }
+    const respuestas = await Promise.all(
+      FORMSPREE_URLS.map(url =>
+        fetch(url, {
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json",
+            "Accept":"application/json"
+          },
+          body:JSON.stringify(datos)
+        })
+      )
     );
 
-    if(!respuesta.ok){
-      throw new Error("Formspree no aceptó el envío");
+    if(respuestas.some(respuesta => !respuesta.ok)){
+      throw new Error("Uno de los formularios de Formspree no aceptó el envío");
     }
 
     // ======================================
