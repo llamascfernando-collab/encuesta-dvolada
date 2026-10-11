@@ -738,6 +738,12 @@ const FORMSPREE_URLS = [
 ];
 
 // ==========================================
+// URL DEL WEBHOOK DE MAKE (EXCEL)
+// ==========================================
+
+const EXCEL_FLOW_URL = "https://hook.us2.make.com/dlcjqynjh94upooykmjxospmvevwt4p7";
+
+// ==========================================
 // SUCURSAL
 // ==========================================
 
@@ -893,21 +899,39 @@ send.addEventListener("click", async () => {
 
   try{
 
-    const respuestas = await Promise.all(
-      FORMSPREE_URLS.map(url =>
-        fetch(url, {
-          method:"POST",
-          headers:{
-            "Content-Type":"application/json",
-            "Accept":"application/json"
-          },
-          body:JSON.stringify(datos)
-        })
-      )
+    // Datos para Excel, en el orden de la hoja:
+    // Fecha (la pone Power Automate) | Calificacion | Motivos | Comentarios | Sucursal
+    const datosExcel = {
+      calificacion: datos.calificacion,
+      motivos: datos.motivos || "Ninguno",
+      comentarios: datos.comentario || "Sin comentarios",
+      sucursal: datos.sucursal
+    };
+
+    const envios = FORMSPREE_URLS.map(url =>
+      fetch(url, {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json",
+          "Accept":"application/json"
+        },
+        body:JSON.stringify(datos)
+      })
     );
 
+    // Envío a Excel (Make). Si falla, no bloquea la encuesta.
+    if(EXCEL_FLOW_URL.startsWith("https://")){
+      fetch(EXCEL_FLOW_URL, {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body:JSON.stringify(datosExcel)
+      }).catch(err => console.error("Error al enviar a Excel:", err));
+    }
+
+    const respuestas = await Promise.all(envios);
+
     if(respuestas.some(respuesta => !respuesta.ok)){
-      throw new Error("Uno de los formularios de Formspree no aceptó el envío");
+      throw new Error("Formspree no aceptó el envío");
     }
 
     // ======================================
